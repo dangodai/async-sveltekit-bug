@@ -2,10 +2,29 @@
     const { data } = $props();
 </script>
 
-<ol>
-    {#each data.pikachu.moves as move}
-        <li>
-            {move.move.name}
-        </li>
+<!-- This is Ok! -->
+<!-- {data.obj.arr} -->
+
+<!-- This is Ok! -->
+<!-- {#await new Promise((f) => f(data.obj.arr)) then result}
+    <p>Hello from inside {"{"}#await{"}"}</p>
+    {#each result as _}
+        <p>Hello from inside nested {"{"}#each{"}"}</p>
     {/each}
-</ol>
+{/await} -->
+
+<!-- Causes error -->
+<!-- {#key data.obj.arr}
+    <p>Hello from inside {'{'}#key{'}'}</p>
+{/key} -->
+
+<!-- Causes error! -->
+<!-- {#if data.obj.arr}
+    <p>Hello from inside {'{'}#if{'}'}</p>
+{/if} -->
+
+
+<!-- Causes error! -->
+{#each data.obj.arr as _}
+    <p>Hello from inside {'{'}#each{'}'}</p>
+{/each}
